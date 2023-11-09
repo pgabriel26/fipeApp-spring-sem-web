@@ -2,6 +2,11 @@ package br.com.alura.fipeApp.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Veiculo {
     private Integer tipoVeiculo;
     private Double valor;
@@ -63,10 +68,11 @@ public class Veiculo {
 
     @Override
     public String toString() {
-        return  "Valor: R$" + valor +
-                " Marca: '" + marca + '\'' +
-                " Modelo: '" + modelo + '\'' +
+        DecimalFormat df = new DecimalFormat("#,###.00",
+                new DecimalFormatSymbols(Locale.GERMAN));
+        return  "Valor: R$ " + df.format(valor) +
                 " Ano: '" + anoModelo + '\'' +
+                " Modelo: '" + modelo + '\'' +
                 " Combustivel: '" + combustivel + '\'' +
                 " Codigo Fipe: '" + codigoFipe + '\'';
     }

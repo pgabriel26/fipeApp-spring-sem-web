@@ -48,7 +48,7 @@ public class Principal {
         listaMarcas.forEach(System.out::println);
 
         while (true) {
-            System.out.println("Digite o codigo da marca que voce deseja pesquisar.");
+            System.out.println("Digite o codigo da montadora que voce deseja pesquisar.");
             var digito = input.nextInt();
             if (listaMarcas.stream().noneMatch(v -> v.getCodigo() == digito)) {
                 System.out.println("*** Codigo inexistente na lista! ***\n");
@@ -69,6 +69,32 @@ public class Principal {
         System.out.println("\n*** Lista de modelos da montadora ***");
         listaModelos.stream().forEach(System.out::println);
 
+//        while (true) {
+//            System.out.println("Digite o nome do Veiculo para pesquisar o preço.");
+//            String nomev = input.next().toLowerCase();
+//            if (listaModelos.stream().anyMatch(m -> m.getNome().toLowerCase().contains(nomev))){
+//                List<Integer> listaCodigos = listaModelos.stream()
+//                        .filter(m -> m.getNome().toLowerCase().contains(nomev))
+//                        .map(lm -> lm.getCodigo())
+//                        .collect(Collectors.toList());
+//
+////                System.out.println(jsonJm);
+//
+//                List<String> listaAnos = listaCodigos.stream()
+//                        .map(c -> consumo.obterDados(ENDERECO + busca + c.toString() + "/anos/"))
+//                        .peek(System.out::println)
+//                        .collect(Collectors.toList());
+//
+//
+//                System.out.println(listaAnos);
+//
+//                List<DadosMontadora> carrosAgrupados =
+//                break;
+//            } else {
+//                System.out.println("*** Verifique se digitou o nome corretamente ***\n");
+//            }
+//        }
+//
         while (true) {
             System.out.println("Digite o codigo do Veiculo para pesquisar o preço.");
             var digito = input.nextInt();
@@ -94,6 +120,7 @@ public class Principal {
 
         List<Veiculo> veiculos = dadosVeiculos.stream()
                 .map(Veiculo::new)
+                .sorted(Comparator.comparing(Veiculo::getValor))
                 .collect(Collectors.toList());
 
         veiculos.forEach(System.out::println);
